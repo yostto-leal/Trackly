@@ -1,0 +1,26 @@
+# Node modules (client e server)
+client/node_modules/
+server/node_modules/
+
+# Builds
+client/dist/
+server/dist/
+build/
+
+# Logs
+*.log
+
+# Variáveis de ambiente
+client/.env
+server/.env
+.env
+
+# Configurações de IDE
+.vscode/
+.idea/
+
+# Arquivos temporários
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
