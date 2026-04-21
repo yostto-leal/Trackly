@@ -1,28 +1,23 @@
 import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 
 export default function Login() {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // aqui você pode validar usuário/senha
     navigate("/dashboard");
   };
 
   return (
-    <div style={styles.container}>
-      <h1>Truck System</h1>
-      <button onClick={handleLogin}>Entrar</button>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2>Truck System</h2>
+        <input type="text" placeholder="Usuário" required />
+        <input type="password" placeholder="Senha" required />
+        <button type="submit">Entrar</button>
+      </form>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    background: "#0f172a",
-    color: "#fff",
-  },
-};

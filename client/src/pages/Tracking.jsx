@@ -1,33 +1,19 @@
-import { useEffect, useState } from "react";
-import Map from "../components/Map";
+import "../styles/Tracking.css";
 
 export default function Tracking() {
-  const [position, setPosition] = useState([-8.0476, -34.8770]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPosition((prev) => [
-        prev[0] + 0.001,
-        prev[1] + 0.001,
-      ]);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div style={styles.container}>
-      <h2>Tracking</h2>
-      <Map position={position} />
+    <div className="tracking">
+      <h2>Rastreamento de Entrega</h2>
+      <div className="map">
+        {/* Aqui você pode integrar um mapa real (Leaflet, Google Maps, etc.) */}
+      </div>
+      <div className="details">
+        <p><strong>Pedido:</strong> #H62J46983210A</p>
+        <p><strong>Status:</strong> <span className="status">Em trânsito</span></p>
+        <p><strong>Origem:</strong> Brooklyn, NY</p>
+        <p><strong>Destino:</strong> Delawanna, NY</p>
+        <p><strong>Previsão de chegada:</strong> 3h 29m</p>
+      </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    padding: "20px",
-    background: "#0f172a",
-    minHeight: "100vh",
-    color: "#fff",
-  },
-};
