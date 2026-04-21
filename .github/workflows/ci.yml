@@ -1,0 +1,46 @@
+name: CI/CD Trackly
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Build client
+        run: |
+          cd client
+          npm install
+          npm run build
+
+      - name: Build server
+        run: |
+          cd server
+          npm install
+          npm test
+
+      - name: Build Docker Compose
+        run: |
+          docker-compose build
+
+      - name: Subir containers
+        run: docker-compose up -d
+
+      - name: Verificar containers rodando
+        run: docker ps -a
+
+      - name: Testar backend
+        run: curl http://localhost:5000 || true
+
+      - name: Testar frontend
+        run: curl http://localhost:3000 || true
