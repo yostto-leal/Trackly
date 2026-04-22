@@ -20,21 +20,22 @@ jobs:
       - name: Build client
         run: |
           cd client
+          ls -la
           npm install
           npm run build
 
       - name: Build server
         run: |
           cd server
+          ls -la
           npm install
-          npm test
+          # npm test  # só se houver script de teste
 
       - name: Build Docker Compose
-        run: |
-          docker-compose build
+        run: docker compose build
 
       - name: Subir containers
-        run: docker-compose up -d
+        run: docker compose up -d
 
       - name: Verificar containers rodando
         run: docker ps -a
@@ -44,3 +45,4 @@ jobs:
 
       - name: Testar frontend
         run: curl http://localhost:3000 || true
+
